@@ -38,6 +38,9 @@ NodeMatcher _compileSequence(SimpleSelectorSequence sequence) {
   if (sequence.isCombinatorNone) {
     return _compileSimpleSelector(sequence.simpleSelector);
   }
+
+  throw new UnsupportedError(
+      'Unsupported combinator.\n${sequence.span.highlight()}');
 }
 
 NodeMatcher _compileSimpleSelector(SimpleSelector simple) {
@@ -53,7 +56,7 @@ NodeMatcher _compileSimpleSelector(SimpleSelector simple) {
     return (Node node) => node.tagName == simple.name;
   } else if (simple is IdSelector) {
     return (Node node) => node.attributes['id'] == simple.name;
-  }  else if (simple is ClassSelector) {
+  } else if (simple is ClassSelector) {
     return (Node node) {
       if (!node.attributes.containsKey('class')) return false;
 
@@ -68,5 +71,7 @@ NodeMatcher _compileSimpleSelector(SimpleSelector simple) {
   } else if (simple is NegationSelector) {
     var matcher = _compileSimpleSelector(simple.negationArg);
     return (Node node) => !matcher(node);
-  } else throw new UnsupportedError('Unsupported CSS selector: ${simple.runtimeType}');
+  } else
+    throw new UnsupportedError(
+        'Unsupported CSS selector: ${simple.runtimeType}');
 }
