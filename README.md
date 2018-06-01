@@ -6,8 +6,9 @@ AST's.
 Using the `z` function, you can cleanly create
 complex, nested HTML trees.
 
+# Example
 
-```Example
+```dart
 import 'package:html_builder/elements.dart';
 import 'package:html_builder/html_builder.dart';
 import 'package:zen/zen.dart';
