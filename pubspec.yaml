@@ -9,5 +9,4 @@ dependencies:
   csslib: ^0.14.0
   html_builder: ^1.0.0
 dev_dependencies:
-  mariposa_test: ^1.1.0
-  test: ^1.0.0
+  test: any
